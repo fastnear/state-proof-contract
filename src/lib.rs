@@ -1,5 +1,11 @@
+mod proof;
+mod raw_node;
+mod utils;
+mod value_ref;
+
 // Find all our documentation at https://docs.near.org
-use near_sdk::{log, near};
+use near_sdk::json_types::Base58CryptoHash;
+use near_sdk::{env, log, near, BlockHeight, CryptoHash};
 
 // Define the contract structure
 #[near(contract_state)]
@@ -23,6 +29,12 @@ impl Contract {
     pub fn get_greeting(&self) -> String {
         self.greeting.clone()
     }
+
+    // #[payable]
+    // pub fn make_snapshot(&mut self) -> (Base58CryptoHash, BlockHeight) {
+    //     let height = env::block_height();
+    //     (hash, height)
+    // }
 
     // Public method - accepts a greeting, such as "howdy", and records it
     pub fn set_greeting(&mut self, greeting: String) {
